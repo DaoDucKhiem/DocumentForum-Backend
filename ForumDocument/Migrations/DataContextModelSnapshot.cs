@@ -95,6 +95,26 @@ namespace ForumDocument.Migrations
                     b.ToTable("Document");
                 });
 
+            modelBuilder.Entity("ForumDocument.Entities.History", b =>
+                {
+                    b.Property<int>("HistoryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedDate")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("HistoryID");
+
+                    b.ToTable("History");
+                });
+
             modelBuilder.Entity("ForumDocument.Entities.Report", b =>
                 {
                     b.Property<int>("ReportID")

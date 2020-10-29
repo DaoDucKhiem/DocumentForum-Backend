@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ForumDocument.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201022163615_migraton")]
-    partial class migraton
+    [Migration("20201029141817_Document")]
+    partial class Document
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -95,6 +95,26 @@ namespace ForumDocument.Migrations
                     b.HasKey("DocumentID");
 
                     b.ToTable("Document");
+                });
+
+            modelBuilder.Entity("ForumDocument.Entities.History", b =>
+                {
+                    b.Property<int>("HistoryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedDate")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("HistoryID");
+
+                    b.ToTable("History");
                 });
 
             modelBuilder.Entity("ForumDocument.Entities.Report", b =>

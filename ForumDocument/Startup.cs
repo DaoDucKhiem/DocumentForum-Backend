@@ -32,7 +32,7 @@ namespace ForumDocument
             services.AddDbContextPool<DataContext>(
                     options => options.UseMySql(_configuration.GetConnectionString("DefaultConnection")
             ));
-
+            
             services.AddCors();
             services.AddControllers();
         }

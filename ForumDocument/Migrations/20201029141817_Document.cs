@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ForumDocument.Migrations
 {
-    public partial class migraton : Migration
+    public partial class Document : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -60,6 +60,21 @@ namespace ForumDocument.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "History",
+                columns: table => new
+                {
+                    HistoryID = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    UserID = table.Column<Guid>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    CreatedDate = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_History", x => x.HistoryID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Report",
                 columns: table => new
                 {
@@ -100,6 +115,9 @@ namespace ForumDocument.Migrations
 
             migrationBuilder.DropTable(
                 name: "Document");
+
+            migrationBuilder.DropTable(
+                name: "History");
 
             migrationBuilder.DropTable(
                 name: "Report");
