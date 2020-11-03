@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ForumDocument.Migrations
 {
-    public partial class migraton : Migration
+    public partial class migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,6 +44,7 @@ namespace ForumDocument.Migrations
                     DocumentID = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     DocumentName = table.Column<string>(nullable: true),
+                    DocumentLink = table.Column<string>(nullable: true),
                     DocumentSize = table.Column<float>(nullable: false),
                     DocumentType = table.Column<string>(nullable: true),
                     Point = table.Column<int>(nullable: false),

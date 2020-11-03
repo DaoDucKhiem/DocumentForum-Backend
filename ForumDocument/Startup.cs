@@ -1,17 +1,16 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using ForumDocument.Entities.DatabaseContext;
+using ForumDocument.Interfaces;
+using ForumDocument.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ForumDocument
 {
@@ -30,11 +29,14 @@ namespace ForumDocument
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContextPool<DataContext>(
-                    options => options.UseMySql(_configuration.GetConnectionString("DefaultConnection")
-            ));
+                      options => options.UseMySql(_configuration.GetConnectionString("DefaultConnection")
+              ));
 
             services.AddCors();
             services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddScoped<IDocumentService, DocumentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ForumDocument.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201022163615_migraton")]
-    partial class migraton
+    [Migration("20201103143545_migration")]
+    partial class migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,6 +66,9 @@ namespace ForumDocument.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("DocumentLink")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("DocumentName")

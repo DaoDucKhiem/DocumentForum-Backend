@@ -9,15 +9,17 @@
   <ItemGroup>
     <Compile Remove="Migrations\20201022163333_migration.cs" />
     <Compile Remove="Migrations\20201022163333_migration.Designer.cs" />
+    <Compile Remove="Migrations\20201022163615_migraton.cs" />
+    <Compile Remove="Migrations\20201022163615_migraton.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Helpers\" />
     <Folder Include="Mappers\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />

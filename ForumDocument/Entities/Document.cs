@@ -16,6 +16,10 @@ namespace ForumDocument.Entities
         /// </summary>
         public string DocumentName { get; set; }
         /// <summary>
+        /// link tài liệu
+        /// </summary>
+        public string DocumentLink { get; set; }
+        /// <summary>
         /// dung lượng tài liệu
         /// </summary>
         public float DocumentSize { get; set; }

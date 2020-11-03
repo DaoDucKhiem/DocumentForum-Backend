@@ -8,6 +8,7 @@ namespace ForumDocument.Services
 {
     public class BaseService<T> : IBaseService<T>
     {
+
         public BaseService()
         {
 
