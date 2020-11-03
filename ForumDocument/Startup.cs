@@ -29,15 +29,8 @@ namespace ForumDocument
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContextPool<DataContext>(
-<<<<<<< HEAD
                       options => options.UseMySql(_configuration.GetConnectionString("DefaultConnection")
               ));
-
-=======
-                    options => options.UseMySql(_configuration.GetConnectionString("DefaultConnection")
-            ));
-            
->>>>>>> 3a3e0df9d0a505edc77efbe4cc8ad3a202290149
             services.AddCors();
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);

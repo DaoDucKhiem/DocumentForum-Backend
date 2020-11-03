@@ -9,13 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ForumDocument.Migrations
 {
     [DbContext(typeof(DataContext))]
-<<<<<<< HEAD:ForumDocument/Migrations/20201103143545_migration.Designer.cs
-    [Migration("20201103143545_migration")]
+    [Migration("20201103173401_migration")]
     partial class migration
-=======
-    [Migration("20201029141817_Document")]
-    partial class Document
->>>>>>> 3a3e0df9d0a505edc77efbe4cc8ad3a202290149:ForumDocument/Migrations/20201029141817_Document.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

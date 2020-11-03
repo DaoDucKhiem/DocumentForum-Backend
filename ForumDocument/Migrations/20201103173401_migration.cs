@@ -4,11 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ForumDocument.Migrations
 {
-<<<<<<< HEAD:ForumDocument/Migrations/20201103143545_migration.cs
     public partial class migration : Migration
-=======
-    public partial class Document : Migration
->>>>>>> 3a3e0df9d0a505edc77efbe4cc8ad3a202290149:ForumDocument/Migrations/20201029141817_Document.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

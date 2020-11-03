@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20201022163333_migration.cs" />
-    <Compile Remove="Migrations\20201022163333_migration.Designer.cs" />
-    <Compile Remove="Migrations\20201022163615_migraton.cs" />
-    <Compile Remove="Migrations\20201022163615_migraton.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Mappers\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
