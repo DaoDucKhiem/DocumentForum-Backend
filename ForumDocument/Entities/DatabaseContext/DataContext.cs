@@ -12,5 +12,6 @@ namespace ForumDocument.Entities.DatabaseContext
         public DbSet<Comment> Comment { get; set; }
         public DbSet<Document> Document { get; set; }
         public DbSet<Report> Report { get; set; }
+        public DbSet<History> History { get; set; }
     }
 }
