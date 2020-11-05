@@ -91,14 +91,23 @@ namespace ForumDocument.Controllers
         //// POST: api/Documents
         //// To protect from overposting attacks, enable the specific properties you want to bind to, for
         //// more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        //[HttpPost]
-        //public async Task<ActionResult<Document>> PostDocument(Document document)
-        //{
-        //    _context.Document.Add(document);
-        //    await _context.SaveChangesAsync();
-
-        //    return CreatedAtAction("GetDocument", new { id = document.DocumentID }, document);
-        //}
+        [HttpPost]
+        [Route("save")]
+        public async Task<ServiceResponse> PostDocument(Document document)
+        {
+            ServiceResponse result = new ServiceResponse();
+            try
+            {
+                result.Data = await _documentService.saveDocumentAsync(document);
+                result.Code = ServiceResponseCode.Success;
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.OnExeption(ex);
+            }
+            return result;
+        }
 
         //// DELETE: api/Documents/5
         //[HttpDelete("{id}")]

@@ -9,5 +9,7 @@ namespace ForumDocument.Interfaces
     public interface IDocumentService
     {
         Task<List<Document>> GetAllDocumentAsync();
+
+        Task<int> saveDocumentAsync(Document document);
     }
 }

@@ -24,5 +24,13 @@ namespace ForumDocument.Services
             listDocument = await _context.Document.ToListAsync();
             return listDocument;
         }
+
+        public async Task<int> saveDocumentAsync(Document document)
+        {
+            _context.Document.Add(document);
+            var result = await _context.SaveChangesAsync();
+
+            return result;
+        }
     }
 }
