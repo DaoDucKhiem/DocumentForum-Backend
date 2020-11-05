@@ -26,12 +26,12 @@ namespace ForumDocument.Controllers
 
         // GET: api/Documents
         [HttpGet]
-        public Task<ServiceResponse> GetDocument()
+        public async Task<ServiceResponse> GetDocument()
         {
             ServiceResponse result = new ServiceResponse();
             try
             {
-                result.Data = _documentService.GetAllDocumentAsync();
+                result.Data = await _documentService.GetAllDocumentAsync();
                 result.Code = ServiceResponseCode.Success;
                 result.Success = true;
             }
@@ -39,7 +39,7 @@ namespace ForumDocument.Controllers
             {
                 result.OnExeption(ex);
             }
-            return Task.FromResult(result);
+            return result;
         }
 
         // GET: api/Documents/5
