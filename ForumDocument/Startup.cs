@@ -1,7 +1,5 @@
-using System;
-using System.Text;
-using System.Threading.Tasks;
 using ForumDocument.Entities.DatabaseContext;
+using ForumDocument.Helpers;
 using ForumDocument.Interfaces;
 using ForumDocument.Services;
 using Microsoft.AspNetCore.Builder;
@@ -10,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 
 namespace ForumDocument
 {
@@ -35,7 +32,14 @@ namespace ForumDocument
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            services.AddScoped<IDocumentService, DocumentService>();
+            var appSettingsSection = _configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+
+            services.AddTransient<Microsoft.AspNetCore.Http.IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IBaseService, BaseService>();
+            services.AddTransient<IDocumentService, DocumentService>();
+            services.AddTransient<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

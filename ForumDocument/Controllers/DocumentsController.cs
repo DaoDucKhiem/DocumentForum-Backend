@@ -42,6 +42,29 @@ namespace ForumDocument.Controllers
             return result;
         }
 
+        /// <summary>
+        /// get paging document
+        /// </summary>
+        /// <returns></returns>
+        /// ddkhiem
+        [HttpGet]
+        [Route("documentPaging")]
+        public async Task<ServiceResponse> GetDocumentPaging([FromBody] FilterParam filterParam)
+        {
+            ServiceResponse result = new ServiceResponse();
+            try
+            {
+                result.Data = await _documentService.GetDocumentPagingAsync(filterParam);
+                result.Code = ServiceResponseCode.Success;
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.OnExeption(ex);
+            }
+            return result;
+        }
+
         // GET: api/Documents/5
         //[HttpGet("{id}")]
         //public async Task<ActionResult<Document>> GetDocument(int id)

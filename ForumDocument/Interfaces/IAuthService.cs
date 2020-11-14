@@ -1,12 +1,13 @@
-﻿using System;
+﻿using ForumDocument.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ForumDocument.Interfaces
 {
-    public interface IStudentSerice
+    public interface IAuthService
     {
-        //: IBaseService<T>
+        UserLoginInfo GetUserInfor();
     }
 }
