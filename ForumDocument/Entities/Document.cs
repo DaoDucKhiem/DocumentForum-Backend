@@ -16,6 +16,10 @@ namespace ForumDocument.Entities
         /// </summary>
         public string DocumentName { get; set; }
         /// <summary>
+        /// ảnh đại diện của tài liệu
+        /// </summary>
+        public string ImageFeature { get; set; }
+        /// <summary>
         /// link tài liệu
         /// </summary>
         public string DocumentLink { get; set; }
