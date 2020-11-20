@@ -48,6 +48,10 @@ namespace ForumDocument.Entities
         /// </summary>
         public Guid UserID { get; set; }
         /// <summary>
+        /// tên người đăng tài liệu
+        /// </summary>
+        public string UserName { get; set; }
+        /// <summary>
         /// mô tả tài liệu
         /// </summary>
         public string Description { get; set; }

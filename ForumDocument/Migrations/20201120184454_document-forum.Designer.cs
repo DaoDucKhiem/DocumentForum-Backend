@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ForumDocument.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201115024830_update-document-field")]
-    partial class updatedocumentfield
+    [Migration("20201120184454_document-forum")]
+    partial class documentforum
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -95,6 +95,9 @@ namespace ForumDocument.Migrations
                     b.Property<Guid>("UserID")
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("UserName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<int>("ViewCount")
                         .HasColumnType("int");
 
@@ -154,6 +157,12 @@ namespace ForumDocument.Migrations
                     b.Property<Guid>("UserID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("Point")
                         .HasColumnType("int");

@@ -1,7 +1,4 @@
 ﻿using ForumDocument.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ForumDocument.Interfaces
@@ -9,5 +6,7 @@ namespace ForumDocument.Interfaces
     public interface IUserService
     {
         UserLoginInfo GetUserLoginInfo();
+
+        Task<int> saveUserAsync(UserRegister user);
     }
 }

@@ -93,6 +93,9 @@ namespace ForumDocument.Migrations
                     b.Property<Guid>("UserID")
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("UserName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<int>("ViewCount")
                         .HasColumnType("int");
 
@@ -152,6 +155,12 @@ namespace ForumDocument.Migrations
                     b.Property<Guid>("UserID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("Point")
                         .HasColumnType("int");

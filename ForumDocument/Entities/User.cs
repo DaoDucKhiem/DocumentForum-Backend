@@ -12,6 +12,14 @@ namespace ForumDocument.Entities
         /// </summary>
         public Guid UserID { get; set; }
         /// <summary>
+        /// tên người dùng
+        /// </summary>
+        public string FullName { get; set; }
+        /// <summary>
+        /// email
+        /// </summary>
+        public string Email { get; set; }
+        /// <summary>
         /// quyền hạn
         /// </summary>
         public int Role { get; set; }

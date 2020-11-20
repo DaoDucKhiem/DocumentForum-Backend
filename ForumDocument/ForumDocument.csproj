@@ -3,15 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>18c1cf94-cdf4-462a-8291-22008d37d076</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Migrations\20201103173401_migration.cs" />
-    <Compile Remove="Migrations\20201103173401_migration.Designer.cs" />
-    <Compile Remove="Migrations\20201103181824_migration.cs" />
-    <Compile Remove="Migrations\20201103181824_migration.Designer.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Mappers\" />

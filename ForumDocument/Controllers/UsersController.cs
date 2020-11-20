@@ -9,6 +9,7 @@ using ForumDocument.Entities;
 using ForumDocument.Entities.DatabaseContext;
 using ForumDocument.Models;
 using ForumDocument.Interfaces;
+using ForumDocument.Helpers.Enumeration;
 
 namespace ForumDocument.Controllers
 {
@@ -36,7 +37,7 @@ namespace ForumDocument.Controllers
                 };
                 result.Data = userData;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 result.OnExeption(ex);
             }
@@ -102,17 +103,26 @@ namespace ForumDocument.Controllers
         //    return NoContent();
         //}
 
-        //// POST: api/Users
-        //// To protect from overposting attacks, enable the specific properties you want to bind to, for
-        //// more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        //[HttpPost]
-        //public async Task<ActionResult<User>> PostUser(User user)
-        //{
-        //    _context.Users.Add(user);
-        //    await _context.SaveChangesAsync();
-
-        //    return CreatedAtAction("GetUser", new { id = user.UserID }, user);
-        //}
+        // POST: api/Users
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [HttpPost]
+        [Route("registerUser")]
+        public async Task<ServiceResponse> RegisterUser(UserRegister user)
+        {
+            var result = new ServiceResponse();
+            try
+            {
+                result.Data = await _userBL.saveUserAsync(user);
+                result.Code = ServiceResponseCode.Success;
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.OnExeption(ex);
+            }
+            return result;
+        }
 
         //// DELETE: api/Users/5
         //[HttpDelete("{id}")]

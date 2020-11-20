@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using ForumDocument.Entities;
-using ForumDocument.Entities.DatabaseContext;
+﻿using ForumDocument.Entities;
+using ForumDocument.Helpers.Enumeration;
 using ForumDocument.Interfaces;
 using ForumDocument.Models;
-using ForumDocument.Helpers.Enumeration;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace ForumDocument.Controllers
 {

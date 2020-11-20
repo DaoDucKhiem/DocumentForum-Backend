@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ForumDocument.Migrations
 {
-    public partial class database : Migration
+    public partial class documentforum : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,6 +44,7 @@ namespace ForumDocument.Migrations
                     DocumentID = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     DocumentName = table.Column<string>(nullable: true),
+                    ImageFeature = table.Column<string>(nullable: true),
                     DocumentLink = table.Column<string>(nullable: true),
                     DocumentSize = table.Column<float>(nullable: false),
                     DocumentType = table.Column<string>(nullable: true),
@@ -51,6 +52,7 @@ namespace ForumDocument.Migrations
                     ViewCount = table.Column<int>(nullable: false),
                     DownloadCount = table.Column<int>(nullable: false),
                     UserID = table.Column<Guid>(nullable: false),
+                    UserName = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     CategoryID = table.Column<int>(nullable: false),
                     ReportCount = table.Column<int>(nullable: false)
@@ -97,6 +99,8 @@ namespace ForumDocument.Migrations
                 columns: table => new
                 {
                     UserID = table.Column<Guid>(nullable: false),
+                    FullName = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
                     Role = table.Column<int>(nullable: false),
                     Point = table.Column<int>(nullable: false)
                 },
