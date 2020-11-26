@@ -42,7 +42,7 @@ namespace ForumDocument.Controllers
         /// </summary>
         /// <returns></returns>
         /// ddkhiem
-        [HttpGet]
+        [HttpPost]
         [Route("documentPaging")]
         public async Task<ServiceResponse> GetDocumentPaging([FromBody] FilterParam filterParam)
         {
