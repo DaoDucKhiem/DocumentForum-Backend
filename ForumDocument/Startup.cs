@@ -35,8 +35,7 @@ namespace ForumDocument
 
             var appSettingsSection = _configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
-
-            services.AddTransient<Microsoft.AspNetCore.Http.IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpContextAccessor();
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IBaseService, BaseService>();
             services.AddTransient<IDocumentService, DocumentService>();
