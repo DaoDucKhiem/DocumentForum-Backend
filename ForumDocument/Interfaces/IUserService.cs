@@ -1,4 +1,5 @@
-﻿using ForumDocument.Models;
+﻿using ForumDocument.Entities;
+using ForumDocument.Models;
 using System.Threading.Tasks;
 
 namespace ForumDocument.Interfaces
@@ -8,5 +9,6 @@ namespace ForumDocument.Interfaces
         UserLoginInfo GetUserLoginInfo();
 
         Task<int> saveUserAsync(UserRegister user);
+        Task<bool> UpdatePointAfterDownload(User user, Document document);
     }
 }

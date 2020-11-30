@@ -60,55 +60,42 @@ namespace ForumDocument.Controllers
             return result;
         }
 
-        // GET: api/Documents/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<Document>> GetDocument(int id)
-        //{
-        //    var document = await _context.Document.FindAsync(id);
+        [HttpPost]
+        [Route("mostPopular")]
+        public async Task<ServiceResponse> GetMostPopularDocument([FromBody] FilterParam filterParam)
+        {
+            ServiceResponse result = new ServiceResponse();
+            try
+            {
+                result.Data = await _documentService.GetMostPopularDocument(filterParam);
+                result.Code = ServiceResponseCode.Success;
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.OnExeption(ex);
+            }
+            return result;
+        }
 
-        //    if (document == null)
-        //    {
-        //        return NotFound();
-        //    }
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ServiceResponse> GetDocumentByUserID(Guid id)
+        {
+            ServiceResponse result = new ServiceResponse();
+            try
+            {
+                result.Data = await _documentService.GetDocumentByUserID(id);
+                result.Code = ServiceResponseCode.Success;
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.OnExeption(ex);
+            }
+            return result;
+        }
 
-        //    return document;
-        //}
-
-        //// PUT: api/Documents/5
-        //// To protect from overposting attacks, enable the specific properties you want to bind to, for
-        //// more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutDocument(int id, Document document)
-        //{
-        //    if (id != document.DocumentID)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    _context.Entry(document).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!DocumentExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
-
-        //// POST: api/Documents
-        //// To protect from overposting attacks, enable the specific properties you want to bind to, for
-        //// more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         [Route("save")]
         public async Task<ServiceResponse> PostDocument(Document document)
@@ -117,6 +104,41 @@ namespace ForumDocument.Controllers
             try
             {
                 result.Data = await _documentService.saveDocumentAsync(document);
+                result.Code = ServiceResponseCode.Success;
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.OnExeption(ex);
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("updateView")]
+        public async Task<ServiceResponse> UpdateView(Document document)
+        {
+            ServiceResponse result = new ServiceResponse();
+            try
+            {
+                result.Data = await _documentService.UpdateView(document);
+                result.Code = ServiceResponseCode.Success;
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.OnExeption(ex);
+            }
+            return result;
+        }
+
+        [HttpPost]
+        [Route("updateDownload")]
+        public async Task<ServiceResponse> UpdateDownload(Document document)
+        {
+            ServiceResponse result = new ServiceResponse();
+            try
+            {
+                result.Data = await _documentService.UpdateDownload(document);
                 result.Code = ServiceResponseCode.Success;
                 result.Success = true;
             }
