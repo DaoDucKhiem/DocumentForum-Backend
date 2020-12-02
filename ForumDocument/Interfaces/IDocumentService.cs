@@ -16,6 +16,7 @@ namespace ForumDocument.Interfaces
         Task<List<Document>> GetDocumentByUserID(Guid id);
         Task<Document> UpdateView(Document doc);
         Task<Document> UpdateDownload(Document doc);
+        Task<DocumentCount> CountTotalDocument();
         Task<int> saveDocumentAsync(Document document);
     }
 }

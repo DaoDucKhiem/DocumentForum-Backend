@@ -44,23 +44,23 @@ namespace ForumDocument.Controllers
             return result;
         }
 
-        [HttpPost]
-        [Route("updatePoint")]
-        public async Task<ServiceResponse> UpdatePointAfterDownload(User user, Document document)
-        {
-            ServiceResponse result = new ServiceResponse();
-            try
-            {
-                result.Data = await _userBL.UpdatePointAfterDownload(user, document);
-                result.Code = ServiceResponseCode.Success;
-                result.Success = true;
-            }
-            catch (Exception ex)
-            {
-                result.OnExeption(ex);
-            }
-            return result;
-        }
+        //[HttpPost]
+        //[Route("updatePoint")]
+        //public async Task<ServiceResponse> UpdatePointAfterDownload(User user, Document document)
+        //{
+        //    ServiceResponse result = new ServiceResponse();
+        //    try
+        //    {
+        //        result.Data = await _userBL.UpdatePointAfterDownload(user, document);
+        //        result.Code = ServiceResponseCode.Success;
+        //        result.Success = true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result.OnExeption(ex);
+        //    }
+        //    return result;
+        //}
         //private readonly DataContext _context;
 
         //public UsersController(DataContext context)

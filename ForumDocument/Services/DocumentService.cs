@@ -34,7 +34,7 @@ namespace ForumDocument.Services
             List<Document> listDocument = new List<Document>();
             var userID = new MySqlParameter("@UserID", id);
             listDocument = await _context.Document.FromSqlRaw("Select * from Document where UserID=@UserID", userID).ToListAsync();
-            return listDocument; ;
+            return listDocument;
         }
 
         /// <summary>
@@ -120,6 +120,22 @@ namespace ForumDocument.Services
             _context.Entry(updatePoint).State = EntityState.Modified;
             _context.SaveChanges();
             return updatePoint;
+        }
+        /// <summary>
+        /// Đếm tài liệu
+        /// </summary>
+        /// <returns></returns>
+        public async Task<DocumentCount> CountTotalDocument()
+        {
+            DocumentCount countDocument = new DocumentCount();
+            countDocument.Total = await _context.Document.FromSqlRaw("Select * from Document").CountAsync();
+            var listDocument = await _context.Document.FromSqlRaw("Select * from Document").ToListAsync();
+            listDocument.ForEach((res) =>
+            {
+                countDocument.TotalDownload += res.DownloadCount;
+                countDocument.TotalView += res.ViewCount;
+            });
+            return countDocument;
         }
     }
 }

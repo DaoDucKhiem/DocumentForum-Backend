@@ -63,5 +63,6 @@ namespace ForumDocument.Entities
         /// số lượt bị report
         /// </summary>
         public int ReportCount { get; set; }
+
     }
 }

@@ -148,6 +148,23 @@ namespace ForumDocument.Controllers
             }
             return result;
         }
+        [HttpGet]
+        [Route("countDocument")]
+        public async Task<ServiceResponse> CountTotalDocument()
+        {
+            ServiceResponse result = new ServiceResponse();
+            try
+            {
+                result.Data = await _documentService.CountTotalDocument();
+                result.Code = ServiceResponseCode.Success;
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.OnExeption(ex);
+            }
+            return result;
+        }
 
         //// DELETE: api/Documents/5
         //[HttpDelete("{id}")]
