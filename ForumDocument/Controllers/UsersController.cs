@@ -26,14 +26,14 @@ namespace ForumDocument.Controllers
 
         [HttpGet]
         [Route("GetUserLogin")]
-        public async Task<ServiceResponse> GetUserLogin()
+        public async Task<ServiceResponse> GetUserLoginAsync()
         {
             var result = new ServiceResponse();
             try
             {
                 var userData = new
                 {
-                    UserData = _userBL.GetUserLoginInfo(),
+                    UserData = await _userBL.GetUserLoginInfoAsync(),
                 };
                 result.Data = userData;
             }

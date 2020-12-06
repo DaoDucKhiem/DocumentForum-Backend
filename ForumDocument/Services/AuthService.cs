@@ -24,7 +24,10 @@ namespace ForumDocument.Services
         public UserLoginInfo GetUserInfor()
         {
             string jsonPayload = GetAuthPayloadString();
-            UserLoginInfo user =  Converter.Deserialize<UserLoginInfo>(jsonPayload);
+            PayloadInfo data =  Converter.Deserialize<PayloadInfo>(jsonPayload);
+            UserLoginInfo user = new UserLoginInfo();
+            user.UserID = data.user_id;
+            user.Email = data.email;
             user.StringeeToken = GenerateJwtStringee(_appSettings.IsUser, _appSettings.Secret, user.UserID.ToString());
             return user;
         }
@@ -32,11 +35,11 @@ namespace ForumDocument.Services
         public string GetAuthPayloadString()
         {
             string authHeader = GetHeaderByName("Authorization");
-            //string token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InN0cmluZ2VlLWFwaTt2PTEifQ.eyJqdGkiOiJTS0d6Qm5xRWJzb0RFT3FzTEpxZWZ0d2k1Y0Y2RXEwUUVpLTE2MDQ1ODU1MTMiLCJpc3MiOiJTS0d6Qm5xRWJzb0RFT3FzTEpxZWZ0d2k1Y0Y2RXEwUUVpIiwiZXhwIjoxNjA1MTkwMzEzLCJ1c2VySWQiOiI2NGE1OWEyNS0yNDg4LTU0YjAtZjZiNC1jOGFmMDhhNTBjYmYiLCJmdWxsTmFtZSI6Ilh1w6JuIETFqW5nIiwiZW1haWwiOiJkdW5nMUB2bnUuZWR1LnZuIiwicGhvbmUiOiIwOTc1MjU1NjUwIiwicGFzc3dvcmRVcGRhdGVUaW1lIjoiMjAyMC0xMC0yNVQwOToxMTo1OC4wMTlaIiwiaWF0IjoxNjA0NTg1NTEzfQ.7AyBMDYDMDv95YkmGSYVP6cVrn61eRSWESzPjDz1_D0";
+            //string token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InN0cmluZ2VlLWFwaTt2PTEifQ.eyJqdGkiOiJTS0d6Qm5xRWJzb0RFT3FzTEpxZWZ0d2k1Y0Y2RXEwUUVpLTE2MDQ1ODU1MTMiLCJpc3MiOiJTS0d6Qm5xRWJzb0RFT3FzTEpxZWZ0d2k1Y0Y2RXEwUUVpIiwiZXhwIjoxNjA1MTkwMzEzLCJ1c2VySWQiOiI2NGE1OWEyNS0yNDg4LTU0YjAtZjZiNC1jOGFmMDhhNTBjYmYiLCJmdWxsTmFtZSI6Ilh1w6JuIETFqW5nIiwiZW1haWwiOiJkdW5nMUB2bnUuZWR1LnZuIiwicGhvbmUiOiIwOTc1MjU1NjUwIiwicGFzc3dvcmRVcGRhdGVUaW1lIjoiMjAyMC0xMC0yNVQwOToxMTo1OC4wMTlaIiwiaWF0IjoxNjA0NTg1NTEzfQ.7AyBMDYDMDv95YkmGSYVP6cVrn61eRSWESzPjDz1_D0";            
             string token = "";
             if (!string.IsNullOrWhiteSpace(authHeader))
             {
-                token = authHeader;
+                token = authHeader.Split(" ")[1];
             }
 
             var handler = new JwtSecurityTokenHandler();
