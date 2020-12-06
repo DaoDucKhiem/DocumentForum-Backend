@@ -166,6 +166,24 @@ namespace ForumDocument.Controllers
             return result;
         }
 
+        [HttpGet]
+        [Route("getbyid/{id}")]
+        public async Task<ServiceResponse> GetDocumentByID(int id)
+        {
+            ServiceResponse result = new ServiceResponse();
+            try
+            {
+                result.Data = await _documentService.GetDocumentByID(id);
+                result.Code = ServiceResponseCode.Success;
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.OnExeption(ex);
+            }
+            return result;
+        }
+
         //// DELETE: api/Documents/5
         //[HttpDelete("{id}")]
         //public async Task<ActionResult<Document>> DeleteDocument(int id)

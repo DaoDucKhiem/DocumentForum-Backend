@@ -137,5 +137,13 @@ namespace ForumDocument.Services
             });
             return countDocument;
         }
+
+        public async Task<Document> GetDocumentByID(int id)
+        {
+            Document document = new Document();
+            var ID = new MySqlParameter("@ID", id);
+            document = await _context.Document.FromSqlRaw("Select * from Document where DocumentID=@ID", ID).FirstOrDefaultAsync();
+            return document;
+        }
     }
 }
