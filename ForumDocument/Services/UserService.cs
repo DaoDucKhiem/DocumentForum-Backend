@@ -3,6 +3,7 @@ using ForumDocument.Entities.DatabaseContext;
 using ForumDocument.Interfaces;
 using ForumDocument.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 
 namespace ForumDocument.Services
@@ -13,9 +14,20 @@ namespace ForumDocument.Services
         {
         }
 
-        public UserLoginInfo GetUserLoginInfo()
+        public async Task<UserLoginInfo> GetUserLoginInfoAsync()
         {
-            return _authenService.GetUserInfor();
+            UserLoginInfo userInfo = _authenService.GetUserInfor();
+            User data = await GetUserInfor(userInfo.UserID);
+            userInfo.FullName = data.FullName;
+            userInfo.Point = data.Point;
+            userInfo.Role = data.Role;
+            return userInfo;
+        }
+
+        public async Task<User> GetUserInfor(Guid id)
+        {
+
+            return await _context.Users.FindAsync(id);
         }
 
         /// <summary>

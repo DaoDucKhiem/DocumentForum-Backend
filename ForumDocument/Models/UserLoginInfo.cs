@@ -10,7 +10,11 @@ namespace ForumDocument.Models
     {
         [Key]
         public Guid UserID { get; set; }
+        public string FullName { get; set; }
+        public string Email { get; set; }
+        public int Role { get; set; }
         public string Token { get; set; }
         public string StringeeToken { get; set; }
+        public int Point { get; set; }
     }
 }

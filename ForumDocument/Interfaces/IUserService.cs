@@ -6,7 +6,7 @@ namespace ForumDocument.Interfaces
 {
     public interface IUserService
     {
-        UserLoginInfo GetUserLoginInfo();
+        Task<UserLoginInfo> GetUserLoginInfoAsync();
 
         Task<int> saveUserAsync(UserRegister user);
         Task<bool> UpdatePointAfterDownload(User user, Document document);
