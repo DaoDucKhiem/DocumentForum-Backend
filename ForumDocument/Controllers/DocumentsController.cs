@@ -184,25 +184,39 @@ namespace ForumDocument.Controllers
             return result;
         }
 
-        //// DELETE: api/Documents/5
-        //[HttpDelete("{id}")]
-        //public async Task<ActionResult<Document>> DeleteDocument(int id)
-        //{
-        //    var document = await _context.Document.FindAsync(id);
-        //    if (document == null)
-        //    {
-        //        return NotFound();
-        //    }
 
-        //    _context.Document.Remove(document);
-        //    await _context.SaveChangesAsync();
+        [HttpDelete("{id}")]
+        public async Task<ServiceResponse> deleteDocumentbyID(int id)
+        {
+            ServiceResponse result = new ServiceResponse();
+            try
+            {
+                result.Data = await _documentService.deleteDocumentbyID(id);
+                result.Code = ServiceResponseCode.Success;
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.OnExeption(ex);
+            }
+            return result;
+        }
 
-        //    return document;
-        //}
-
-        //private bool DocumentExists(int id)
-        //{
-        //    return _context.Document.Any(e => e.DocumentID == id);
-        //}
+        [HttpPost("updateDocument")]
+        public async Task<ServiceResponse> updateDocumentbyID(Document doc)
+        {
+            ServiceResponse result = new ServiceResponse();
+            try
+            {
+                result.Data = await _documentService.updateDocumentbyID(doc);
+                result.Code = ServiceResponseCode.Success;
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.OnExeption(ex);
+            }
+            return result;
+        }
     }
 }

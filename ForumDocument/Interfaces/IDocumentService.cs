@@ -19,5 +19,7 @@ namespace ForumDocument.Interfaces
         Task<Document> UpdateDownload(Document doc);
         Task<DocumentCount> CountTotalDocument();
         Task<int> saveDocumentAsync(Document document);
+        Task<int> deleteDocumentbyID(int id);
+        Task<int> updateDocumentbyID(Document doc);
     }
 }

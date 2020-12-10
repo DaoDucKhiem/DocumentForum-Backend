@@ -145,5 +145,22 @@ namespace ForumDocument.Services
             document = await _context.Document.FromSqlRaw("Select * from Document where DocumentID=@ID", ID).FirstOrDefaultAsync();
             return document;
         }
+
+        public async Task<int> deleteDocumentbyID(int id)
+        {
+            var document = await _context.Document.SingleOrDefaultAsync(x => x.DocumentID == id);
+            _context.Document.Remove(document);
+            var result = await _context.SaveChangesAsync();
+
+            return result;
+        }
+
+        public async Task<int> updateDocumentbyID(Document doc)
+        {
+            _context.Entry(doc).State = EntityState.Modified;
+            var result = await _context.SaveChangesAsync();
+
+            return result;
+        }
     }
 }
