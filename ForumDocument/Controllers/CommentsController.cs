@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ForumDocument.Entities;
 using ForumDocument.Entities.DatabaseContext;
+using ForumDocument.Models;
+using ForumDocument.Interfaces;
+using ForumDocument.Helpers.Enumeration;
 
 namespace ForumDocument.Controllers
 {
@@ -14,97 +17,81 @@ namespace ForumDocument.Controllers
     [ApiController]
     public class CommentsController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly ICommentService _commentService;
 
-        public CommentsController(DataContext context)
+        public CommentsController(ICommentService documentService)
         {
-            _context = context;
+            _commentService = documentService;
         }
-
-        // GET: api/Comments
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Comment>>> GetComment()
+        [Route("{id}")]
+        public async Task<ServiceResponse> GetCommentByDocumentID(int id)
         {
-            return await _context.Comment.ToListAsync();
-        }
-
-        // GET: api/Comments/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Comment>> GetComment(int id)
-        {
-            var comment = await _context.Comment.FindAsync(id);
-
-            if (comment == null)
-            {
-                return NotFound();
-            }
-
-            return comment;
-        }
-
-        // PUT: api/Comments/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutComment(int id, Comment comment)
-        {
-            if (id != comment.CommentID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(comment).State = EntityState.Modified;
-
+            ServiceResponse result = new ServiceResponse();
             try
             {
-                await _context.SaveChangesAsync();
+                result.Data = await _commentService.GetCommentByDocumentID(id);
+                result.Code = ServiceResponseCode.Success;
+                result.Success = true;
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!CommentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                result.OnExeption(ex);
             }
-
-            return NoContent();
+            return result;
         }
 
-        // POST: api/Comments
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [HttpGet]
+        [Route("getAll/{id}")]
+        public async Task<ServiceResponse> GetAllCommentByDocumentID(int id)
+        {
+            ServiceResponse result = new ServiceResponse();
+            try
+            {
+                result.Data = await _commentService.GetAllCommentByDocumentID(id);
+                result.Code = ServiceResponseCode.Success;
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.OnExeption(ex);
+            }
+            return result;
+        }
+
         [HttpPost]
-        public async Task<ActionResult<Comment>> PostComment(Comment comment)
+        [Route("save")]
+        public async Task<ServiceResponse> PostDocument(Comment comment)
         {
-            _context.Comment.Add(comment);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetComment", new { id = comment.CommentID }, comment);
-        }
-
-        // DELETE: api/Comments/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Comment>> DeleteComment(int id)
-        {
-            var comment = await _context.Comment.FindAsync(id);
-            if (comment == null)
+            ServiceResponse result = new ServiceResponse();
+            try
             {
-                return NotFound();
+                result.Data = await _commentService.saveCommentAsync(comment);
+                result.Code = ServiceResponseCode.Success;
+                result.Success = true;
             }
-
-            _context.Comment.Remove(comment);
-            await _context.SaveChangesAsync();
-
-            return comment;
+            catch (Exception ex)
+            {
+                result.OnExeption(ex);
+            }
+            return result;
         }
 
-        private bool CommentExists(int id)
+        [HttpDelete("{id}")]
+        public async Task<ServiceResponse> deleteCommentbyID(int id)
         {
-            return _context.Comment.Any(e => e.CommentID == id);
+            ServiceResponse result = new ServiceResponse();
+            try
+            {
+                result.Data = await _commentService.deleteCommentbyID(id);
+                result.Code = ServiceResponseCode.Success;
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.OnExeption(ex);
+            }
+            return result;
         }
     }
 }

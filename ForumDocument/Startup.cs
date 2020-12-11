@@ -38,6 +38,7 @@ namespace ForumDocument
             services.AddHttpContextAccessor();
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IBaseService, BaseService>();
+            services.AddTransient<ICommentService, CommentService>();
             services.AddTransient<IDocumentService, DocumentService>();
             services.AddTransient<IUserService, UserService>();
         }
