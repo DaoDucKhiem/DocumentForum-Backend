@@ -16,6 +16,10 @@ namespace ForumDocument.Entities
         /// </summary>
         public string UserID { get; set; }
         /// <summary>
+        /// tên người comment
+        /// </summary>
+        public string UserName { get; set; }
+        /// <summary>
         /// nội dung comment
         /// </summary>
         public string Content { get; set; }
@@ -23,6 +27,10 @@ namespace ForumDocument.Entities
         /// id tài liệu
         /// </summary>
         public int DocumentID { get; set; }
+        /// <summary>
+        /// Ngày tạo
+        /// </summary>
+        public DateTime CreatedDate { get; set; }
         /// <summary>
         /// số report đã được báo cáo
         /// </summary>

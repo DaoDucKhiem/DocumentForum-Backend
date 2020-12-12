@@ -22,6 +22,6 @@ namespace ForumDocument.Entities
         /// <summary>
         /// Ngày tạo
         /// </summary>
-        public string CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

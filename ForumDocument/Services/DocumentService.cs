@@ -71,7 +71,7 @@ namespace ForumDocument.Services
             }
             if (filterParam.CategoryID == 20)
             {
-                listDocument = await _context.Document.FromSqlRaw("Select * from Document order by ViewCount DESC limit @Number", number).ToListAsync();
+                listDocument = await _context.Document.FromSqlRaw("Select * from Document order by CreatedDate DESC limit @Number", number).ToListAsync();
             }
             return listDocument;
         }

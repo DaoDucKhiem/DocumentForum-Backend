@@ -31,5 +31,9 @@ namespace ForumDocument.Entities
         /// id comment bị báo cáo
         /// </summary>
         public int CommentID { get; set; }
+        /// <summary>
+        /// Ngày tạo
+        /// </summary>
+        public DateTime CreatedDate { get; set; }
     }
 }

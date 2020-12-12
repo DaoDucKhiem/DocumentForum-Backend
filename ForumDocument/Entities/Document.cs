@@ -63,6 +63,10 @@ namespace ForumDocument.Entities
         /// số lượt bị report
         /// </summary>
         public int ReportCount { get; set; }
+        /// <summary>
+        /// Ngày tạo
+        /// </summary>
+        public DateTime CreatedDate { get; set; }
 
     }
 }

@@ -29,7 +29,7 @@ namespace ForumDocument.Services
         {
             List<Comment> listDocument = new List<Comment>();
             var DocID = new MySqlParameter("@DocID", it);
-            listDocument = await _context.Comment.FromSqlRaw("Select * from Comment where DocumentID=@DocID limit 10", DocID).ToListAsync();
+            listDocument = await _context.Comment.FromSqlRaw("Select * from Comment where DocumentID=@DocID order by CreatedDate DESC limit 10", DocID).ToListAsync();
             return listDocument;
         }
 
