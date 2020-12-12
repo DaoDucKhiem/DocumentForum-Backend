@@ -56,19 +56,19 @@ namespace ForumDocument.Services
         /// <param name="user"></param>
         /// <param name="document"></param>
         /// <returns></returns>
-        public async Task<bool> UpdatePointAfterDownload(User user, Document document)
+        public async Task<bool> UpdatePointAfterDownload(PosterParam posterParam)
         {
             var reducePoint = new User();
             var increasePoint = new User();
             bool res;
-            increasePoint = await _context.Users.SingleOrDefaultAsync(x => x.UserID == user.UserID);
-            reducePoint = await _context.Users.SingleOrDefaultAsync(x => x.UserID == document.UserID);
+            increasePoint = await _context.Users.SingleOrDefaultAsync(x => x.UserID == posterParam.Poster);
+            reducePoint = await _context.Users.SingleOrDefaultAsync(x => x.UserID == posterParam.Downloader);
             if (increasePoint != null && reducePoint != null)
             {
-                if(reducePoint.Point - document.Point > 0)
+                if(reducePoint.Point - posterParam.Point > 0)
                 {
-                    increasePoint.Point = increasePoint.Point + document.Point;
-                    reducePoint.Point = reducePoint.Point - document.Point;
+                    increasePoint.Point = increasePoint.Point + posterParam.Point;
+                    reducePoint.Point = reducePoint.Point - posterParam.Point;
                     _context.Entry(increasePoint).State = EntityState.Modified;
                     _context.Entry(reducePoint).State = EntityState.Modified;
                     _context.SaveChanges();

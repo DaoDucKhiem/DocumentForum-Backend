@@ -9,6 +9,6 @@ namespace ForumDocument.Interfaces
         Task<UserLoginInfo> GetUserLoginInfoAsync();
 
         Task<int> saveUserAsync(UserRegister user);
-        Task<bool> UpdatePointAfterDownload(User user, Document document);
+        Task<bool> UpdatePointAfterDownload(PosterParam posterParam);
     }
 }
