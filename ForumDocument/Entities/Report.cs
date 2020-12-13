@@ -35,5 +35,11 @@ namespace ForumDocument.Entities
         /// Ngày tạo
         /// </summary>
         public DateTime CreatedDate { get; set; }
+        /// <summary>
+        /// Ngày tạo
+        /// </summary>
+        public int Status { get; set; }
+
+
     }
 }

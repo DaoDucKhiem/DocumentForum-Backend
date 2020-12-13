@@ -40,6 +40,7 @@ namespace ForumDocument
             services.AddTransient<IBaseService, BaseService>();
             services.AddTransient<ICommentService, CommentService>();
             services.AddTransient<IDocumentService, DocumentService>();
+            services.AddTransient<IReportService, ReportService>();
             services.AddTransient<IUserService, UserService>();
         }
 
