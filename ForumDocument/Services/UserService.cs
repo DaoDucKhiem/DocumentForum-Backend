@@ -60,28 +60,27 @@ namespace ForumDocument.Services
         {
             var reducePoint = new User();
             var increasePoint = new User();
+            var document = new Document();
             bool res;
             increasePoint = await _context.Users.SingleOrDefaultAsync(x => x.UserID == posterParam.Poster);
             reducePoint = await _context.Users.SingleOrDefaultAsync(x => x.UserID == posterParam.Downloader);
-            if (increasePoint != null && reducePoint != null)
+            document = await _context.Document.SingleOrDefaultAsync(x => x.DocumentID == posterParam.DocumentID);
+
+            if (increasePoint != null && reducePoint != null && document != null)
             {
-                if(reducePoint.Point - posterParam.Point > 0)
-                {
-                    increasePoint.Point = increasePoint.Point + posterParam.Point;
-                    reducePoint.Point = reducePoint.Point - posterParam.Point;
-                    _context.Entry(increasePoint).State = EntityState.Modified;
-                    _context.Entry(reducePoint).State = EntityState.Modified;
-                    _context.SaveChanges();
-                    res = true;
-                }
-                else
-                {
-                    res = false;
-                }
+                increasePoint.Point = increasePoint.Point + posterParam.Point;
+                reducePoint.Point = reducePoint.Point - posterParam.Point;
+                document.DownloadCount++;
+                _context.Entry(increasePoint).State = EntityState.Modified;
+                _context.Entry(reducePoint).State = EntityState.Modified;
+                _context.Entry(document).State = EntityState.Modified;
+                _context.SaveChanges();
+                res = true;
             }
-            else {
+            else
+            {
                 res = false;
-             }
+            }
             return res;
         }
     }
