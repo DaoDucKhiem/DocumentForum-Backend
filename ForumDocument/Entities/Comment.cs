@@ -14,7 +14,7 @@ namespace ForumDocument.Entities
         /// <summary>
         /// id người comment
         /// </summary>
-        public string UserID { get; set; }
+        public Guid UserID { get; set; }
         /// <summary>
         /// tên người comment
         /// </summary>
