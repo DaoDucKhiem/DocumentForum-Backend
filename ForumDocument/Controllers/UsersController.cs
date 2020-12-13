@@ -26,7 +26,7 @@ namespace ForumDocument.Controllers
 
         [HttpGet]
         [Route("GetUserLogin")]
-        public async Task<ServiceResponse> GetUserLoginAsync()
+        public async Task<ActionResult<ServiceResponse>> GetUserLoginAsync()
         {
             var result = new ServiceResponse();
             try
@@ -40,8 +40,9 @@ namespace ForumDocument.Controllers
             catch (Exception ex)
             {
                 result.OnExeption(ex);
+                return BadRequest(result);
             }
-            return result;
+            return Ok(result);
         }
 
         [HttpPost]
