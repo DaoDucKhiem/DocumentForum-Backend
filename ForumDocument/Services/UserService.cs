@@ -38,6 +38,13 @@ namespace ForumDocument.Services
         /// <returns></returns>
         public async Task<int> saveUserAsync(UserRegister user)
         {
+            // Kiem tra userName da ton tai chua
+            var isUserExist = await _context.Users.AnyAsync<User>(u => (u.Email == user.email || u.UserID == user.id));
+            if (isUserExist)
+            {
+                throw new Exception("User da ton tai");
+            }
+            // Them user moi
             var newUser = new User();
             newUser.UserID = user.id;
             newUser.FullName = user.name;

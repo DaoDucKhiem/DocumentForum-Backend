@@ -126,7 +126,7 @@ namespace ForumDocument.Controllers
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         [Route("registerUser")]
-        public async Task<ServiceResponse> RegisterUser(UserRegister user)
+        public async Task<ActionResult<ServiceResponse>> RegisterUser(UserRegister user)
         {
             var result = new ServiceResponse();
             try
@@ -138,8 +138,9 @@ namespace ForumDocument.Controllers
             catch (Exception ex)
             {
                 result.OnExeption(ex);
+                return BadRequest(result);
             }
-            return result;
+            return Ok(result);
         }
 
         //// DELETE: api/Users/5
