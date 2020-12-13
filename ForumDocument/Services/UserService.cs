@@ -3,6 +3,7 @@ using ForumDocument.Entities.DatabaseContext;
 using ForumDocument.Interfaces;
 using ForumDocument.Models;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
 using System;
 using System.Threading.Tasks;
 
@@ -62,18 +63,21 @@ namespace ForumDocument.Services
             var increasePoint = new User();
             var document = new Document();
             bool res;
-            increasePoint = await _context.Users.SingleOrDefaultAsync(x => x.UserID == posterParam.Poster);
-            reducePoint = await _context.Users.SingleOrDefaultAsync(x => x.UserID == posterParam.Downloader);
+            var posterID = new MySqlParameter("@posterID", posterParam.Poster);
+            var downloaderID = new MySqlParameter("@downloaderID", posterParam.Downloader);
+            increasePoint = await _context.Users.FromSqlRaw("Select * from Users where UserID=@posterID", posterID).FirstOrDefaultAsync();
+            reducePoint = await _context.Users.FromSqlRaw("Select * from Users where UserID=@downloaderID", downloaderID).FirstOrDefaultAsync();
             document = await _context.Document.SingleOrDefaultAsync(x => x.DocumentID == posterParam.DocumentID);
 
             if (increasePoint != null && reducePoint != null && document != null)
             {
-                increasePoint.Point = increasePoint.Point + posterParam.Point;
+                increasePoint.Point = increasePoint.Point + posterParam.Point + 1;
                 reducePoint.Point = reducePoint.Point - posterParam.Point;
                 document.DownloadCount++;
-                _context.Entry(increasePoint).State = EntityState.Modified;
                 _context.Entry(reducePoint).State = EntityState.Modified;
                 _context.Entry(document).State = EntityState.Modified;
+                _context.Entry(increasePoint).State = EntityState.Modified;
+
                 _context.SaveChanges();
                 res = true;
             }
