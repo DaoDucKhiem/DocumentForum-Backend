@@ -77,18 +77,24 @@ namespace ForumDocument.Controllers
         //}
 
         //// GET: api/Users/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<User>> GetUser(Guid id)
-        //{
-        //    var user = await _context.Users.FindAsync(id);
+        [HttpGet]
+        public async Task<ActionResult<ServiceResponse>> GetUser([FromQuery]Guid id)
+        {
+            var serviceResponse = new ServiceResponse();
 
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
+            try
+            {
+                serviceResponse.Data = await _userBL.GetUserInfor(id);
+                serviceResponse.Success = true;
+            }
+            catch(Exception ex)
+            {
+                serviceResponse.OnExeption(ex);
+                return BadRequest(serviceResponse);
+            }
 
-        //    return user;
-        //}
+            return Ok(serviceResponse);
+        }
 
         //// PUT: api/Users/5
         //// To protect from overposting attacks, enable the specific properties you want to bind to, for
