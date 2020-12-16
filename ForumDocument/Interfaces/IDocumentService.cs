@@ -13,7 +13,7 @@ namespace ForumDocument.Interfaces
 
         Task<List<Document>> GetDocumentPagingAsync(FilterParam filterParam);
         Task<List<Document>> GetMostPopularDocument(FilterParam filterParam);
-        Task<List<Document>> GetDocumentByUserID(Guid id);
+        Task<List<Document>> GetDocumentByUserID(Guid id, string search);
         Task<Document> GetDocumentByID(int id);
         Task<Document> UpdateView(Document doc);
         Task<Document> UpdateDownload(Document doc);

@@ -80,12 +80,12 @@ namespace ForumDocument.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ServiceResponse> GetDocumentByUserID(Guid id)
+        public async Task<ServiceResponse> GetDocumentByUserID(Guid id, [FromQuery] string search)
         {
             ServiceResponse result = new ServiceResponse();
             try
             {
-                result.Data = await _documentService.GetDocumentByUserID(id);
+                result.Data = await _documentService.GetDocumentByUserID(id, search);
                 result.Code = ServiceResponseCode.Success;
                 result.Success = true;
             }

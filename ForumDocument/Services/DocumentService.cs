@@ -29,11 +29,13 @@ namespace ForumDocument.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<List<Document>> GetDocumentByUserID(Guid id)
+        public async Task<List<Document>> GetDocumentByUserID(Guid id, string search)
         {
             List<Document> listDocument = new List<Document>();
             var userID = new MySqlParameter("@UserID", id);
-            listDocument = await _context.Document.FromSqlRaw("Select * from Document where UserID=@UserID", userID).ToListAsync();
+            listDocument = await _context.Document.FromSqlRaw("Select * from Document where UserID=@UserID", userID).Where(x => (x.DocumentName.Contains(search)
+                                                        || x.Description.Contains(search)
+                                                        || search == null)).ToListAsync();
             return listDocument;
         }
 
@@ -65,7 +67,7 @@ namespace ForumDocument.Services
         {
             List<Document> listDocument = new List<Document>();
             var number = new MySqlParameter("@Number", filterParam.PageSize);
-            if(filterParam.CategoryID == 10)
+            if (filterParam.CategoryID == 10)
             {
                 listDocument = await _context.Document.FromSqlRaw("Select * from Document order by ViewCount DESC limit @Number", number).ToListAsync();
             }
@@ -95,7 +97,7 @@ namespace ForumDocument.Services
         public async Task<Document> UpdateView(Document document)
         {
             var updatePoint = new Document();
-              updatePoint = await _context.Document.SingleOrDefaultAsync(x => x.DocumentID == document.DocumentID);
+            updatePoint = await _context.Document.SingleOrDefaultAsync(x => x.DocumentID == document.DocumentID);
             if (updatePoint != null)
             {
                 updatePoint.ViewCount = updatePoint.ViewCount + 1;

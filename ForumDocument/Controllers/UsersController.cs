@@ -40,7 +40,6 @@ namespace ForumDocument.Controllers
             catch (Exception ex)
             {
                 result.OnExeption(ex);
-                return BadRequest(result);
             }
             return Ok(result);
         }
