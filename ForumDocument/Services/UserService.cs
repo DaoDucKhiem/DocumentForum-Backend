@@ -21,7 +21,6 @@ namespace ForumDocument.Services
             User data = await GetUserInfor(userInfo.UserID);
             userInfo.FullName = data.FullName;
             userInfo.Point = data.Point;
-            userInfo.Role = data.Role;
             return userInfo;
         }
 

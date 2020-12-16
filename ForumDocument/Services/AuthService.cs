@@ -29,6 +29,14 @@ namespace ForumDocument.Services
             user.UserID = data.user_id;
             user.Email = data.email;
             user.StringeeToken = GenerateJwtStringee(_appSettings.IsUser, _appSettings.Secret, user.UserID.ToString());
+            if (data.list_roles.Contains("GROUP_ADMIN"))
+            {
+                user.Role = 1;
+            }
+            else
+            {
+                user.Role = 0;
+            }
             return user;
         }
 
