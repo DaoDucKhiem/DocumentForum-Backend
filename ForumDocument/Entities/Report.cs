@@ -40,6 +40,10 @@ namespace ForumDocument.Entities
         /// </summary>
         public int CommentID { get; set; }
         /// <summary>
+        /// tên người bình luận
+        /// </summary>
+        public string UserComment { get; set; }
+        /// <summary>
         /// Ngày tạo
         /// </summary>
         public DateTime CreatedDate { get; set; }
