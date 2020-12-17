@@ -113,6 +113,25 @@ namespace ForumDocument.Controllers
             }
             return result;
         }
+
+        [HttpPost]
+        [Route("update")]
+        public async Task<ServiceResponse> UpdateDocument(Document document)
+        {
+            ServiceResponse result = new ServiceResponse();
+            try
+            {
+                result.Data = await _documentService.UpdateDocumentAsync(document);
+                result.Code = ServiceResponseCode.Success;
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.OnExeption(ex);
+            }
+            return result;
+        }
+
         [HttpPost]
         [Route("updateView")]
         public async Task<ServiceResponse> UpdateView(Document document)

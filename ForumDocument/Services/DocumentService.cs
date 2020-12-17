@@ -164,5 +164,12 @@ namespace ForumDocument.Services
 
             return result;
         }
+
+        public async Task<int> UpdateDocumentAsync(Document document)
+        {
+            _context.Entry(document).State = EntityState.Modified;
+            var result = await _context.SaveChangesAsync();
+            return result;
+        }
     }
 }
