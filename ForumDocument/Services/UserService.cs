@@ -77,7 +77,7 @@ namespace ForumDocument.Services
 
             if (increasePoint != null && reducePoint != null && document != null)
             {
-                increasePoint.Point = increasePoint.Point + posterParam.Point + 1;
+                increasePoint.Point = increasePoint.Point + (posterParam.Point / 2);
                 reducePoint.Point = reducePoint.Point - posterParam.Point;
                 document.DownloadCount++;
                 _context.Entry(reducePoint).State = EntityState.Modified;
