@@ -11,5 +11,7 @@ namespace ForumDocument.Interfaces
         Task<List<Report>> GetAllReport(bool isAdmin);
         Task<int> saveReportAsync(Report report);
         Task<int> updateStatusbyID(int reportID);
+
+        Task<int> deleteReportbyID(int reportID);
     }
 }

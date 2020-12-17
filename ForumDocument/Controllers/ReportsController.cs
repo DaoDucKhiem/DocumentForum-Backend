@@ -77,5 +77,22 @@ namespace ForumDocument.Controllers
             }
             return result;
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ServiceResponse> deleteReportbyID(int id)
+        {
+            ServiceResponse result = new ServiceResponse();
+            try
+            {
+                result.Data = await _reportService.deleteReportbyID(id);
+                result.Code = ServiceResponseCode.Success;
+                result.Success = true;
+            }
+            catch (Exception ex)
+            {
+                result.OnExeption(ex);
+            }
+            return result;
+        }
     }
 }

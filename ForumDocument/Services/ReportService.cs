@@ -15,6 +15,15 @@ namespace ForumDocument.Services
         {
         }
 
+        public async Task<int> deleteReportbyID(int reportID)
+        {
+            var report = await _context.Report.SingleOrDefaultAsync(x => x.ReportID == reportID);
+            _context.Report.Remove(report);
+            var result = await _context.SaveChangesAsync();
+
+            return result;
+        }
+
         public async Task<List<Report>> GetAllReport(bool isAdmin)
         {
             List<Report> listReport = new List<Report>();
